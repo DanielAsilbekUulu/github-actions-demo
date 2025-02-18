@@ -13,6 +13,6 @@ jobs:
       Greeting: Hello 
     steps: 
       - name: "say hello Daniel"
-        run: echo "$Greeting $First-Name is using $cloud!"
+        run: echo "$Greeting $First-name is using $cloud!"
         env: 
           First-name: Daniel
