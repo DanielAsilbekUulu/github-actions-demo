@@ -1,5 +1,5 @@
 name: Testing workflow variables 
-
+#type: variables for single workflow
 on:
   workflow_dispatch
 
