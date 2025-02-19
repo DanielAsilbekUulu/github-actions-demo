@@ -2,7 +2,7 @@ name: 'Terraform'
 
 on: 
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
   pull_request:
 
 permissions:
@@ -33,32 +33,13 @@ jobs:
     - name: Terraform Init
       run: terraform init
 
+
       #generates an execution plan for terraform 
     - name: Terraform Plan
       run: terraform plan -input=false
+
 
       #on push to "main" , build or change infrastructure according to terraform configuration files
 #note; it is recommended to set up required "strict" status check in your repository for "terraform cloud". See the documentation on "strict" required status checks for more information
     - name: Terraform Apply
       run: terraform apply -auto-approve -input=false
-      env: 
-        GOOGLE_CREDENTIALS: ${{ 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
