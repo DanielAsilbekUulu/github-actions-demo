@@ -1,0 +1,64 @@
+name: 'Terraform'
+
+on: 
+  push:
+    branches: [ "master" ]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs: 
+  terraform: 
+    name: 'Terraform'
+    runs-on: self-hosted
+
+# use the bash shell regardless whether the github action is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      #checkout the repository to the github actions runner 
+    - name: Checkout
+      uses: actions/checkout@v3
+
+#install the latest version of terraform cli and configure the terraform cli configuration file with a Terraform cloud user API token
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with: 
+        cli_config_credential_token: ${{ secrets.TF_API_TOKEN }}      
+
+#initialize a new or existing terraform working directory by creating initial files, loading any remote state, downloading modules etc.
+    - name: Terraform Init
+      run: terraform init
+
+      #generates an execution plan for terraform 
+    - name: Terraform Plan
+      run: terraform plan -input=false
+
+      #on push to "main" , build or change infrastructure according to terraform configuration files
+#note; it is recommended to set up required "strict" status check in your repository for "terraform cloud". See the documentation on "strict" required status checks for more information
+    - name: Terraform Apply
+      run: terraform apply -auto-approve -input=false
+      env: 
+        GOOGLE_CREDENTIALS: ${{ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
