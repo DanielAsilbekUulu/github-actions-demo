@@ -1,0 +1,19 @@
+name: Generate terraform docs
+on:
+ push:
+   branches: [ "main" ]
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3   # checkout the repository code
+    
+    - name: Install Terraform Docs
+      uses: terraform-docs/gh-actions@main    # action to generate terraform documentation
+      with:
+        working-dir: .      # use the current directory (adjust if needed)
+        output-file: README.md    # Update the README file with generated docs 
+        output-method: inject
+        git-push: "true"
